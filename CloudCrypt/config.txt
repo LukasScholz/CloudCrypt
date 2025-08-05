@@ -1,0 +1,3 @@
+CloudStorage=../Test/TestCloud
+LocalStorage=../Test/Local
+KeyFile=../Test/tempkeys.keys

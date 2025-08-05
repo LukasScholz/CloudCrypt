@@ -40,30 +40,19 @@ class Encryption:
             for key in keys:
                 f.write(key)
 
-    def encrypt(self, file):
+    def encrypt(self, file, destination):
         fernet = self._get_keys()
         with open(file, 'rb') as data:
             original = data.read()
         encrypted = fernet.encrypt(original)
-        os.remove(file)
-        with open(file+".cyacrypt", 'wb') as data:
+        with open(destination+".cyacrypt", 'wb') as data:
             data.write(encrypted)
 
-    def decrypt(self, file):
+    def decrypt(self, file, destination):
         fernet = self._get_keys()
         with open(file, 'rb') as data:
             encrypted = data.read()
         decrypted = fernet.decrypt(encrypted)
-        os.remove(file)
-        with open(file[0:-9], 'wb') as data:
+        with open(destination[0:-9], 'wb') as data:
             data.write(decrypted)
-
-
-# test
-tempfile = "Mietbescheinigung.pdf"
-e = Encryption("tempkeys.keys")
-#e.add_key()
-#e.encrypt(tempfile)
-#e.decrypt(tempfile)
-e.add_key_to_front()
 
