@@ -2,18 +2,18 @@ from datetime import datetime
 from pathlib import Path
 
 import os
-import loader
+from ConfigManager import Config
 import shutil
 
 
 class BackupCreator:
 
-    def __init__(self):
-        self.loader = loader.Loader("config.txt")
+    def __init__(self, config_path):
+        self.config = Config(config_path)
 
     def create_local_backup_cloud(self):
-        cloud = Path(self.loader.cloud[:-1])
-        client = Path(self.loader.local[:-1])
+        cloud = Path(self.config.CloudStorage[:-1])
+        client = Path(self.config.LocalStorage[:-1])
         backups = Path(str(client) + "/Backups")
         timestamp = datetime.today().strftime("%Y%m%d%H%M%S")
 

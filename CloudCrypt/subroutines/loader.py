@@ -1,26 +1,19 @@
+import os
 from pathlib import Path
 
+import ConfigManager
 import cryptor
-import os
 
 
 class Loader:
 
     def __init__(self, config):
-        config = open(config, 'r').readlines()
-        for line in config:
-            if line.startswith("CloudStorage"):
-                self.cloud = line.split("=")[-1]
-            if line.startswith("LocalStorage"):
-                self.local = line.split("=")[-1]
-            if line.startswith("KeyFile"):
-                self.keyfile = line.split("=")[-1]
-
-        self.cryptor = cryptor.Encryption(self.keyfile)
+        self.config = ConfigManager.Config(config)
+        self.cryptor = cryptor.Encryption(self.config.KeyFile)
 
     def create_backup(self):
-        cloud = Path(self.cloud[:-1])
-        client = Path(self.local[:-1])
+        cloud = Path(self.config.CloudStorage[:-1])
+        client = Path(self.config.LocalStorage[:-1])
 
         for root, _, files in os.walk(client):
             for filename in files:  # loop through files in the current directory
@@ -28,8 +21,8 @@ class Loader:
                                      str(cloud) + os.path.join(root, self._FileNameCrypter.encrypt(filename))[len(str(client)):])
 
     def load_backup(self):
-        cloud = Path(self.cloud[:-1])
-        client = Path(self.local[:-1])
+        cloud = Path(self.config.CloudStorage[:-1])
+        client = Path(self.config.LocalStorage[:-1])
 
         for root, _, files in os.walk(cloud):
             for filename in files:  # loop through files in the current directory
