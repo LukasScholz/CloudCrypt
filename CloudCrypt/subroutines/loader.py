@@ -1,15 +1,15 @@
 import os
 from pathlib import Path
 
-import ConfigManager
-import cryptor
+import CloudCrypt.subroutines.ConfigManager
+import CloudCrypt.subroutines.cryptor
 
 
 class Loader:
 
     def __init__(self, config):
-        self.config = ConfigManager.Config(config)
-        self.cryptor = cryptor.Encryption(self.config.KeyFile)
+        self.config = CloudCrypt.subroutines.ConfigManager.Config(config)
+        self.cryptor = CloudCrypt.subroutines.cryptor.Encryption(self.config.KeyFile)
 
     def create_backup(self):
         cloud = Path(self.config.CloudStorage[:-1])
