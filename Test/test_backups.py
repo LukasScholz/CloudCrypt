@@ -16,7 +16,10 @@ class MyTestCase(unittest.TestCase):
     def test_create_local_backup(self):
         config = Config(CONFIGPATH)
         backup_creator = BackupCreator(CONFIGPATH)
-        shutil.rmtree(Path(str(config.LocalStorage) + "/Backups"))
+        try:
+            shutil.rmtree(Path(str(config.LocalStorage) + "/Backups"))
+        except FileNotFoundError:
+            pass
         backup_creator.create_local_backup_cloud()
         dirs = os.listdir(Path(str(config.LocalStorage) + "/Backups"))
         self.assertNotEqual(len(dirs), 0)
