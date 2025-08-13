@@ -7,22 +7,24 @@ import CloudCrypt.subroutines.cryptor
 
 class Loader:
 
-    def __init__(self, config):
-        self.config = CloudCrypt.subroutines.ConfigManager.Config(config)
+    def __init__(self, configpath):
+        self.config = CloudCrypt.subroutines.ConfigManager.Config(configpath)
         self.cryptor = CloudCrypt.subroutines.cryptor.Encryption(self.config.KeyFile)
 
-    def create_backup(self):
-        cloud = Path(self.config.CloudStorage[:-1])
-        client = Path(self.config.LocalStorage[:-1])
+    def create_storage(self):
+        cloud = Path(self.config.CloudStorage)
+        client = Path(self.config.LocalStorage)
 
         for root, _, files in os.walk(client):
+            if root.endswith("Backups"):
+                continue
             for filename in files:  # loop through files in the current directory
                 self.cryptor.encrypt(os.path.join(root, filename),
                                      str(cloud) + os.path.join(root, self._FileNameCrypter.encrypt(filename))[len(str(client)):])
 
-    def load_backup(self):
-        cloud = Path(self.config.CloudStorage[:-1])
-        client = Path(self.config.LocalStorage[:-1])
+    def load_storage(self):
+        cloud = Path(self.config.CloudStorage)
+        client = Path(self.config.LocalStorage)
 
         for root, _, files in os.walk(cloud):
             for filename in files:  # loop through files in the current directory
