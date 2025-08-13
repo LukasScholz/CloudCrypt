@@ -6,7 +6,7 @@ from CloudCrypt.subroutines.loader import Loader
 from CloudCrypt.subroutines.Backup_Creator import BackupCreator
 
 # constants
-CONFIGPATH = "test/testconfig.csv"
+CONFIGPATH = "Test/testconfig.csv"
 
 
 class TestSubroutines(unittest.TestCase):
