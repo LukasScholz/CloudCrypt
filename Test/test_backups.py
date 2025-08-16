@@ -1,12 +1,10 @@
+import os
 import shutil
 import unittest
-import os
 from pathlib import Path
 
-from CloudCrypt.subroutines.ConfigManager import Config
-from CloudCrypt.subroutines.cryptor import Encryption
-from CloudCrypt.subroutines.loader import Loader
 from CloudCrypt.subroutines.Backup_Creator import BackupCreator
+from CloudCrypt.subroutines.ConfigManager import Config
 
 # constants
 CONFIGPATH = "Test/testconfig.csv"
