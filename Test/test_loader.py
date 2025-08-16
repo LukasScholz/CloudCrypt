@@ -16,6 +16,12 @@ class MyTestCase(unittest.TestCase):
         dirs = os.listdir(config.CloudStorage)
         self.assertNotEqual(len(dirs), 0)
 
+    def test_load_storage(self):
+        config = Config(CONFIGPATH)
+        loader = Loader(CONFIGPATH)
+        loader.load_storage()
+        dirs = os.listdir(config.LocalStorage)
+        self.assertNotEqual(len(dirs), 0)
 
 if __name__ == '__main__':
     unittest.main()

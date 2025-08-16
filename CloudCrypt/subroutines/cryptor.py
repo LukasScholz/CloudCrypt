@@ -53,6 +53,15 @@ class Encryption:
         with open(file, 'rb') as data:
             encrypted = data.read()
         decrypted = fernet.decrypt(encrypted)
-        with open(destination[0:-9], 'wb') as data:
+        with open(destination, 'wb') as data:
             data.write(decrypted)
+
+    def encrypt_string(self, string):
+        fernet = self._get_keys()
+        return fernet.encrypt(string)
+
+    def decrypt_string(self, string):
+        fernet = self._get_keys()
+        return fernet.decrypt(string[0:-9])
+
 

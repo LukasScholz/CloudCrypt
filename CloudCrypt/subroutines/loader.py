@@ -20,7 +20,7 @@ class Loader:
                 continue
             for filename in files:  # loop through files in the current directory
                 self.cryptor.encrypt(os.path.join(root, filename),
-                                     str(cloud) + os.path.join(root, self._FileNameCrypter.encrypt(filename))[len(str(client)):])
+                                     str(cloud) + os.path.join(root, encrypt_filename(self.cryptor, filename))[len(str(client)):])
 
     def load_storage(self):
         cloud = Path(self.config.CloudStorage)
@@ -29,18 +29,10 @@ class Loader:
         for root, _, files in os.walk(cloud):
             for filename in files:  # loop through files in the current directory
                 self.cryptor.decrypt(os.path.join(root, filename),
-                                     str(client) + os.path.join(root, self._FileNameCrypter.decrypt(filename))[len(str(cloud)):])
+                                     str(client) + os.path.join(root, decrypt_filename(self.cryptor, filename))[len(str(cloud)):])
 
-    class _FileNameCrypter:
+def encrypt_filename(cryptor: CloudCrypt.subroutines.cryptor.Encryption, filename):
+    return (cryptor.encrypt_string(str.encode(filename))).decode()
 
-        def encrypt(filename):
-            result = []
-            for c in filename:
-                result.append(chr(ord(c)*2-7))
-            return "".join(result)
-
-        def decrypt(filename):
-            result = []
-            for c in filename:
-                result.append(chr((ord(c) + 7)//2))
-            return "".join(result)
+def decrypt_filename(cryptor: CloudCrypt.subroutines.cryptor.Encryption, filename):
+    return (cryptor.decrypt_string(str.encode(filename))).decode()
