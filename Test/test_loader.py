@@ -33,7 +33,7 @@ class MyTestCase(unittest.TestCase):
         try:
             self.test_encrypt_filename()
         except Exception:
-            self.skipTest("Encryption Failed! Cannot Test Decryption without")
+            self.skipTest("Encryption Failed! Cannot Test Decryption without Encryption")
 
         loader = Loader(CONFIGPATH)
         encrypted = encrypt_filename(loader.cryptor, TEST_FILENAME)
