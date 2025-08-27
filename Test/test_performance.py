@@ -21,10 +21,8 @@ class MyTestCase(unittest.TestCase):
     def test_storage_performance(self):
         config = Config(CONFIGPATH)
         loader = Loader(CONFIGPATH)
-        print("Generating Files...")
         for i in range(FILEAMOUNT):
             generate_big_random_file(config.LocalStorage + "/tempfile_"+str(i), FILESIZE)
-        print("Creating Storage...")
 
         start = timer()
         loader.create_storage()
