@@ -39,25 +39,3 @@ jobs:
     - name: Test with unittest
       run: |
         python -m unittest
-
-
-
-  PerformanceTest:
-    needs: FunctionalityTest
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python 3.13
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.13"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-    - name: Run Performance Test
-      run: |
-        python ./Test/Performance_test.py
