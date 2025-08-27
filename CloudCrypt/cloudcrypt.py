@@ -9,16 +9,12 @@ class MainInterface:
 
     def __init__(self, args):
         self.arguments = args
-        self.config = None # value set during runtime
-
+        self.config = None  # value set during runtime
 
     def run(self):
         if self.arguments.version:
             self.display_version()
         self.config = CloudCrypt.subroutines.ConfigManager.Config(self.arguments.config)
-
-
-
 
     def display_version(self):
         print("CloudCrypt version " + __version__)
@@ -30,6 +26,7 @@ class CustomArgumentParser(argparse.ArgumentParser):
         print(f'Error: {message}\n\n\n')
         self.print_help()
         sys.exit(2)
+
 
 def argparse():
     parser = CustomArgumentParser(description="Encrypted Backup-creator, mainly for Cloud usage")

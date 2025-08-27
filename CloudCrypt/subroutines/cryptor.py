@@ -63,5 +63,3 @@ class Encryption:
     def decrypt_string(self, string):
         fernet = self._get_keys()
         return fernet.decrypt(string[0:-9])
-
-

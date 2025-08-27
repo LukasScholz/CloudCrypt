@@ -39,4 +39,3 @@ class BackupCreator:
         else:
             to_delete = Path(str(backups) + "/" + str(timestamp) + ".zip")
         os.remove(to_delete)
-
