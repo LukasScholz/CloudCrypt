@@ -60,4 +60,4 @@ jobs:
 
     - name: Run Performance Test
       run: |
-        python -c "import sys; print(sys.version)" # TODO: Add seperate Performance tests
+        python ./Test/Performance_test.py
