@@ -19,8 +19,8 @@ class Loader:
             if root.endswith("Backups"):
                 continue
             for filename in files:  # loop through files in the current directory
-                self.cryptor.encrypt(os.path.join(root, filename),
-                    str(cloud) + os.path.join(root, encrypt_filename(self.cryptor, filename))[len(str(client)):])
+                self.cryptor.encrypt(os.path.join(root, filename), str(cloud) +
+                                     os.path.join(root, encrypt_filename(self.cryptor, filename))[len(str(client)):])
 
     def load_storage(self):
         cloud = Path(self.config.CloudStorage)
@@ -28,8 +28,8 @@ class Loader:
 
         for root, _, files in os.walk(cloud):
             for filename in files:  # loop through files in the current directory
-                self.cryptor.decrypt(os.path.join(root, filename),
-                    str(client) + os.path.join(root, decrypt_filename(self.cryptor, filename))[len(str(cloud)):])
+                self.cryptor.decrypt(os.path.join(root, filename), str(client) +
+                                     os.path.join(root, decrypt_filename(self.cryptor, filename))[len(str(cloud)):])
 
 
 def encrypt_filename(cryptor: CloudCrypt.subroutines.cryptor.Encryption, filename):

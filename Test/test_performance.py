@@ -12,10 +12,12 @@ CONFIGPATH = "Test/testconfig.csv"
 FILEAMOUNT = 300
 FILESIZE = 500000
 
+
 def generate_big_random_file(filename, size):
     chars = ''.join([random.choice(string.ascii_letters) for i in range(size)])
     with open(filename, 'w') as f:
         f.write(chars)
+
 
 class MyTestCase(unittest.TestCase):
     def test_storage_performance(self):

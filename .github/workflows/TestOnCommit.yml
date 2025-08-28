@@ -11,7 +11,7 @@ permissions:
   contents: read
 
 jobs:
-  StartTests:
+  TestPackage:
 
     runs-on: ubuntu-latest
     strategy:

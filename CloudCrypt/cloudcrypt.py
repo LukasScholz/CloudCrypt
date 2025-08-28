@@ -42,5 +42,6 @@ def argparse():
     interface = MainInterface(args)
     interface.run()
 
+
 if __name__ == "__main__":
     argparse()
