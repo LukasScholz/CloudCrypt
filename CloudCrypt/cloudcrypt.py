@@ -32,8 +32,8 @@ def argparse():
     parser = CustomArgumentParser(description="Encrypted Backup-creator, mainly for Cloud usage")
 
     # required arguments
-    parser.add_argument("--source", "-s", help="directory to be saved")
-    parser.add_argument("--target", "-t", help="directory to be saved")
+    parser.add_argument("--source", "-s", help="Path of local directory")
+    parser.add_argument("--target", "-t", help="Path of mounted cloud directory")
     parser.add_argument("--config", "-c", help="Path of the config file")
 
     # optional arguments
