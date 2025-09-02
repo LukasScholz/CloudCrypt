@@ -1,7 +1,6 @@
 import argparse
 import sys
 
-import CloudCrypt.subroutines.ConfigManager
 from __version__ import __version__
 
 
@@ -14,7 +13,7 @@ class MainInterface:
     def run(self):
         if self.arguments.version:
             self.display_version()
-        self.config = CloudCrypt.subroutines.ConfigManager.Config(self.arguments.config)
+        self.config = src.CloudCrypt.subroutines.ConfigManager.Config(self.arguments.config)
 
     def display_version(self):
         print("CloudCrypt version " + __version__)

@@ -1,15 +1,13 @@
 import os
 from pathlib import Path
-
-import CloudCrypt.subroutines.ConfigManager
-import CloudCrypt.subroutines.cryptor
-
+from src.CloudCrypt.subroutines.ConfigManager import Config
+from src.CloudCrypt.subroutines.cryptor import Encryption
 
 class Loader:
 
     def __init__(self, configpath):
-        self.config = CloudCrypt.subroutines.ConfigManager.Config(configpath)
-        self.cryptor = CloudCrypt.subroutines.cryptor.Encryption(self.config.KeyFile)
+        self.config = Config(configpath)
+        self.cryptor = Encryption(self.config.KeyFile)
 
     def create_storage(self):
         cloud = Path(self.config.CloudStorage)
@@ -32,9 +30,9 @@ class Loader:
                                      os.path.join(root, decrypt_filename(self.cryptor, filename))[len(str(cloud)):])
 
 
-def encrypt_filename(cryptor: CloudCrypt.subroutines.cryptor.Encryption, filename):
+def encrypt_filename(cryptor: Encryption, filename):
     return (cryptor.encrypt_string(str.encode(filename))).decode()
 
 
-def decrypt_filename(cryptor: CloudCrypt.subroutines.cryptor.Encryption, filename):
+def decrypt_filename(cryptor: Encryption, filename):
     return (cryptor.decrypt_string(str.encode(filename))).decode()
