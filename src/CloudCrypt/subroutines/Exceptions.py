@@ -1,2 +1,0 @@
-class InvalidArgumentException(BaseException):
-    pass
