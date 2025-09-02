@@ -7,7 +7,7 @@ import CloudCrypt.subroutines.cryptor
 class Loader:
 
     def __init__(self, configpath):
-        self.config = src.CloudCrypt.subroutines.ConfigManager.Config(configpath)
+        self.config = CloudCrypt.subroutines.ConfigManager.Config(configpath)
         self.cryptor = CloudCrypt.subroutines.cryptor.Encryption(self.config.KeyFile)
 
     def create_storage(self):
