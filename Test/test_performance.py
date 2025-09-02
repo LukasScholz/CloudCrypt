@@ -4,8 +4,8 @@ import unittest
 from timeit import default_timer as timer
 
 
-from CloudCrypt.subroutines.ConfigManager import Config
-from CloudCrypt.subroutines.loader import Loader
+from src.CloudCrypt.subroutines.ConfigManager import Config
+from src.CloudCrypt.subroutines import Loader
 
 # constants
 CONFIGPATH = "Test/testconfig.csv"
