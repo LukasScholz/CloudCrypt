@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import CloudCrypt.subroutines.ConfigManager
 import CloudCrypt.subroutines.cryptor
 
 
