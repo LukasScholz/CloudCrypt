@@ -1,8 +1,8 @@
 import os
 import unittest
 
-from src.CloudCrypt.subroutines.ConfigManager import Config
-from src.CloudCrypt.subroutines import Loader, encrypt_filename, decrypt_filename
+from CloudCrypt.subroutines import Config
+from CloudCrypt.subroutines import Loader, encrypt_filename, decrypt_filename
 
 # constants
 CONFIGPATH = "Test/testconfig.csv"

@@ -3,8 +3,8 @@ import shutil
 import unittest
 from pathlib import Path
 
-from src.CloudCrypt.subroutines import BackupCreator
-from src.CloudCrypt.subroutines.ConfigManager import Config
+from CloudCrypt.subroutines import BackupCreator
+from CloudCrypt.subroutines import Config
 
 # constants
 CONFIGPATH = "Test/testconfig.csv"
