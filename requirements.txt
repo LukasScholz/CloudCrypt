@@ -7,3 +7,5 @@ python-dateutil
 pytz
 six
 tzdata
+build
+twine
