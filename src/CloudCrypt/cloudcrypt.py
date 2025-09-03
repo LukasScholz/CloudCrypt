@@ -1,5 +1,6 @@
 import argparse
 import sys
+import src.CloudCrypt.subroutines.ConfigManager
 
 from __version__ import __version__
 
