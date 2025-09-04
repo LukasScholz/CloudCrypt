@@ -1,4 +1,4 @@
-﻿cffi
+cffi
 cryptography
 numpy
 pandas
