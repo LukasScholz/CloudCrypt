@@ -12,8 +12,13 @@ on:
           - info
           - warning
           - debug
+      tags:
+        description: 'Name of Release'
+        required: true
+        type: boolean
   push:
-    branches: ["master"]
+    tags:
+      - '*'
 
 jobs:
 
@@ -33,3 +38,9 @@ jobs:
     - uses: ncipollo/release-action@v1
       with:
         artifacts: "dist/*"
+        draft: false
+        prerelease: true
+        release_name: "ChangeThis"
+        tag_name: ${{ github.ref }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
