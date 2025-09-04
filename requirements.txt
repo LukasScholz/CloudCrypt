@@ -1,4 +1,4 @@
-﻿cffi
+cffi
 cryptography
 numpy
 pandas
@@ -7,3 +7,5 @@ python-dateutil
 pytz
 six
 tzdata
+build
+twine
