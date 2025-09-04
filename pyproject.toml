@@ -1,0 +1,19 @@
+[project]
+name = "CloudCrypt"
+version = "0.0.1"
+authors = [
+  { name="Lukas Scholz", email="tobeadded@gmail.com" },
+]
+description = "Basic Cloud Storage solution with AES encryption using Fernet"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "GPL-3.0-only"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/LukasScholz/CloudCrypt"
+Issues = "https://github.com/LukasScholz/CloudCrypt/issues"

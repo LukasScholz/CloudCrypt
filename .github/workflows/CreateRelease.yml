@@ -1,22 +1,10 @@
 name: Releases
 
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
   push:
-    branches: ["master"]
-
+    tags:
+      - "v*.*.*"
 jobs:
-
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -30,6 +18,9 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run release build
       run: python3 -m build
-    - uses: ncipollo/release-action@v1
+    - name: Create Release
+      uses: softprops/action-gh-release@v2
       with:
-        artifacts: "dist/*"
+        files: "dist/*"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
