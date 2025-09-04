@@ -12,10 +12,6 @@ on:
           - info
           - warning
           - debug
-      tags:
-        description: 'Name of Release'
-        required: true
-        type: boolean
   push:
     tags:
       - '*'
@@ -35,7 +31,9 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run release build
       run: python3 -m build
-    - uses: ncipollo/release-action@v1
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
       with:
         artifacts: "dist/*"
         draft: false
