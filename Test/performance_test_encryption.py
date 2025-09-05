@@ -4,7 +4,7 @@ import unittest
 from timeit import default_timer as timer
 
 
-from src.subroutines import Config
+from src.subroutines.ConfigManager import Config
 from src.subroutines.loader import Loader
 
 # constants
