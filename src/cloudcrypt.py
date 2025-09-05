@@ -2,7 +2,7 @@ import argparse
 import sys
 import tomllib
 from pathlib import Path
-import src.CloudCrypt.subroutines.ConfigManager
+import subroutines.ConfigManager
 
 
 class MainInterface:
@@ -14,7 +14,7 @@ class MainInterface:
     def run(self):
         if self.arguments.version:
             self.display_version()
-        self.config = src.CloudCrypt.subroutines.ConfigManager.Config(self.arguments.config)
+        self.config = subroutines.ConfigManager.Config(self.arguments.config)
 
     def display_version(self):
         version = "unknown"

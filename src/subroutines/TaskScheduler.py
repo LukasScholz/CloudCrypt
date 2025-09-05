@@ -1,6 +1,6 @@
 import os
 import re
-from src.CloudCrypt.subroutines.Exceptions import InvalidArgumentException
+from Exceptions import InvalidArgumentException
 
 
 class WindowsScheduler:
