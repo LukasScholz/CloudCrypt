@@ -24,3 +24,5 @@ jobs:
         files: "dist/*"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Upload Release to PyPI
+      run: python3 -m twine upload --repository testpypi dist/* --verbose
