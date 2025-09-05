@@ -2,7 +2,7 @@ import argparse
 import sys
 import src.CloudCrypt.subroutines.ConfigManager
 
-from __version__ import __version__
+from src.CloudCrypt.__version__ import __version__
 
 
 class MainInterface:

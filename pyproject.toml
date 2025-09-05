@@ -1,5 +1,5 @@
 [project]
-name = "CloudCrypt"
+name = "cloudcrypt"
 version = "0.0.1"
 authors = [
   { name="Lukas Scholz", email="tobeadded@gmail.com" },
