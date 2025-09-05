@@ -1,8 +1,8 @@
 import argparse
 import sys
+import tomllib
+from pathlib import Path
 import src.CloudCrypt.subroutines.ConfigManager
-
-from src.CloudCrypt.__version__ import __version__
 
 
 class MainInterface:
@@ -17,7 +17,14 @@ class MainInterface:
         self.config = src.CloudCrypt.subroutines.ConfigManager.Config(self.arguments.config)
 
     def display_version(self):
-        print("CloudCrypt version " + __version__)
+        version = "unknown"
+        pyproject_toml_file = Path(__file__).parent.parent.parent / "pyproject.toml"
+        if pyproject_toml_file.exists() and pyproject_toml_file.is_file():
+            with open(pyproject_toml_file, "rb") as f:
+                data = tomllib.load(f)
+                version = data.get("project").get("version")
+
+        print("CloudCrypt version " + version)
         exit(0)
 
 
