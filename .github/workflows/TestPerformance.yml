@@ -43,4 +43,4 @@ jobs:
         pip install flake8 pytest
         pip install -r requirements.txt
     - name: Test Performance with unittest
-      run: python -m unittest -k Test/performance_test_*.py
+      run: python -m unittest -k Test/performance_test_.py
