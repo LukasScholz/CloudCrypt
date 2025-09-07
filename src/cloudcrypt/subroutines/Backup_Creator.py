@@ -2,7 +2,7 @@ from datetime import datetime
 from pathlib import Path
 
 import os
-from src.subroutines.ConfigManager import Config
+from cloudcrypt.subroutines.ConfigManager import Config
 import shutil
 
 

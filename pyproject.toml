@@ -1,6 +1,6 @@
 [project]
 name = "cloudcrypt"
-version = "0.0.2"
+dynamic = ["version"]
 authors = [
   { name="Lukas Scholz", email="tobeadded@gmail.com" },
 ]
@@ -17,3 +17,6 @@ license-files = ["LICEN[CS]E*"]
 [project.urls]
 Homepage = "https://github.com/LukasScholz/CloudCrypt"
 Issues = "https://github.com/LukasScholz/CloudCrypt/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "cloudcrypt.__version__"}  # any module attribute compatible with ast.literal_eval

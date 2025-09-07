@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
-from src.subroutines.ConfigManager import Config
-from src.subroutines.cryptor import Encryption
+from cloudcrypt.subroutines.ConfigManager import Config
+from cloudcrypt.subroutines.cryptor import Encryption
 
 class Loader:
 

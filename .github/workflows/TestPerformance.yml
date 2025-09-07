@@ -43,4 +43,7 @@ jobs:
         pip install flake8 pytest
         pip install -r requirements.txt
     - name: Test Performance with unittest
-      run: python -m unittest discover -s Test -p performance_test_*.py
+      run: |
+        python -m build
+        pip install ./dist/cloudcrypt*.tar.gz
+        python -m unittest discover -s Test -p performance_test_*.py
