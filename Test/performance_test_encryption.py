@@ -13,8 +13,8 @@ from cloudcrypt.subroutines.loader import Loader
 TESTTYPE = "Encryption"
 CONFIGPATH = "Test/testconfig.csv"
 RESULTSPATH = "Test/testresults.csv"
-FILEAMOUNT = 10
-FILESIZE = 500
+FILEAMOUNT = 1000
+FILESIZE = 100000
 OS = platform.system()
 VERSION = platform.python_version()
 
