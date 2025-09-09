@@ -1,1 +1,2 @@
 TestType,OS,Python Version,#Files,#Character per File,Time per Character (s),Time per File (s),Time (s)
+Encryption,Linux,3.13.7,10,500,7.075681999992867e-07,0.00035378409999964333,0.0035378409999964333
