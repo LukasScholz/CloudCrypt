@@ -19,7 +19,7 @@ on:
           - debug
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   TestPackage:
@@ -27,8 +27,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.11", "3.12", "3.13"]
-        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
+        python-version: ["3.13"]
+        os: ["ubuntu-latest"]
 
     steps:
     - uses: actions/checkout@v4
@@ -47,3 +47,7 @@ jobs:
         python -m build
         pip install --find-links=./dist cloudcrypt
         python -m unittest discover -s Test -p performance_test_*.py
+    - uses: stefanzweifel/git-auto-commit-action@v6
+      with:
+        commit_message: Added Performance Test results
+        file_pattern: '*results.csv'

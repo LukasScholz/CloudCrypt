@@ -1,6 +1,8 @@
 import random
 import string
 import unittest
+import platform
+import sys
 from timeit import default_timer as timer
 
 
@@ -8,9 +10,13 @@ from cloudcrypt.subroutines.ConfigManager import Config
 from cloudcrypt.subroutines.loader import Loader
 
 # constants
+TESTTYPE = "Encryption"
 CONFIGPATH = "Test/testconfig.csv"
-FILEAMOUNT = 300
-FILESIZE = 500000
+RESULTSPATH = "Test/testresults.csv"
+FILEAMOUNT = 10
+FILESIZE = 500
+OS = platform.system()
+VERSION = platform.python_version()
 
 
 def generate_big_random_file(filename, size):
@@ -29,13 +35,10 @@ class MyTestCase(unittest.TestCase):
         start = timer()
         loader.create_storage()
         end = timer()
-        print()
-        print("---------------------------------")
-        print("Time in seconds: "+str(end - start))
-        print("Time per File: "+str((end - start)/FILEAMOUNT))
-        print("Time per Character: " + str((end - start) / (FILEAMOUNT*FILESIZE)))
-        print("---------------------------------")
-        print()
+        result = (f"{TESTTYPE},{OS},{VERSION},{FILEAMOUNT},{FILESIZE},{str((end - start) / (FILEAMOUNT*FILESIZE))},"
+                  f"{str((end - start)/FILEAMOUNT)},{str(end - start)}")
+        with open(RESULTSPATH, 'a') as f:
+            f.write(result)
 
 
 if __name__ == '__main__':
