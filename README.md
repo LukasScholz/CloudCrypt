@@ -11,3 +11,6 @@ This package is currently in prerelease phase. Therefore it is only available at
 ######
     pip install -i https://test.pypi.org/simple/ cloudcrypt
 
+
+## Performance
+The current Performace levels can be seen [here](./Test/testresults.csv)
