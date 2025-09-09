@@ -44,6 +44,7 @@ jobs:
         pip install -r requirements.txt
     - name: Test Performance with unittest
       run: |
+        cp ./Test/testresults_template.csv ./Test/testresults.csv
         python -m build
         pip install --find-links=./dist cloudcrypt
         python -m unittest discover -s Test -p performance_test_*.py
