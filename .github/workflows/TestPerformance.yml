@@ -45,7 +45,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Write results into files
-      run: echo ${{ needs.RunPerformaceCheck_Linux.outputs }}
+      run: echo "Results from ${{ needs.RunPerformaceCheck_Linux.outputs }}"
     - uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: Added Performance Test results
