@@ -10,13 +10,17 @@ class WindowsScheduler:
         self.intervals = ("MINUTE", "HOURLY", "DAILY", "WEEKLY", "MONTHLY", "ONSTART", "ONLOGON", "ONIDLE")
         self.time_regex = r"^([01]\d|2[0-3]):[0-5]\d$"
 
-    def create_task(self, name: str, interval: str, path: str, time):
-        if interval not in self.intervals:
-            raise InvalidArgumentException("Unknown Interval!")
+    def create_task(self, name: str, path: str):        #,interval: str, time):
+        #if interval not in self.intervals:
+        #    raise InvalidArgumentException("Unknown Interval!")
+        interval = "WEEKLY"
         if not os.path.exists(path):
             raise InvalidArgumentException("Path not Found!")
-        if re.search(self.time_regex, time) is None:
-            raise InvalidArgumentException("Enter valid Time!")
+        #if re.search(self.time_regex, time) is None:
+         #   raise InvalidArgumentException("Enter valid Time!")
+        time = "00:00"
+
+        #TODO: add alternatives from only sunday midnight
 
         # All arguments are valid!
         os.system(f'SchTasks /Create /SC {interval} /TN {name} /TR {path} /ST {time}')
@@ -42,10 +46,11 @@ class LinuxScheduler:
         pass
 
     def create_crontab(self, path):
+        if not os.path.exists(path):
+            raise InvalidArgumentException("Path not Found!")
         croncmd = path # Todo add output routing?
-        cronline = f"* * * * * {croncmd}" # Todo: add arguments to fix * placeholders
+        cronline = f"0 0 * * 0  {croncmd}" # Todo: add alternatives from only sunday midnight
         os.system(f'( crontab -l | grep -v -F {croncmd} ; echo {cronline} ) | crontab -')
-        # Todo: check Arguments!
 
     def remove_crontab(self, path):
         croncmd = path # Todo add output routing?
