@@ -40,9 +40,9 @@ jobs:
         cp ./Test/testresults_template.csv ./Test/testresults.csv
         python -m build
         pip install --find-links=./dist cloudcrypt
-        echo ${{ matrix.python-version }}
-        echo "${${{ matrix.python-version }}:2:2}"
-        echo "output_${python-version:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
+        x=${{ matrix.python-version }}
+        echo "${x:2:2}"
+        echo "output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   PublishResults:
     runs-on: ubuntu-latest
     needs: [RunPerformaceCheck_Linux]
