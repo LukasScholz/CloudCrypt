@@ -30,6 +30,9 @@ class MyTestCase(unittest.TestCase):
         config = Config(CONFIGPATH)
         loader = Loader(CONFIGPATH)
         for i in range(FILEAMOUNT):
+            if (i % FILEAMOUNT / 100) == 0:
+                print("Status: "+str(100*i/FILEAMOUNT)+"%")
+
             generate_big_random_file(config.LocalStorage + "/tempfile_"+str(i), FILESIZE)
 
         start = timer()
