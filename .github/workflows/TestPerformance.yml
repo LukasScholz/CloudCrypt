@@ -6,30 +6,21 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
 
 permissions:
   contents: write
 
 jobs:
-  TestPackage:
-
+  RunPerformaceCheck_Linux:
     runs-on: ${{ matrix.os }}
+    outputs:
+      output_3.11: ${{ steps.testperf.outputs.output_3.11 }}
+      output_3.12: ${{ steps.testperf.outputs.output_3.12 }}
+      output_3.13: ${{ steps.testperf.outputs.output_3.13 }}
     strategy:
       matrix:
-        python-version: ["3.13"]
+        python-version: ["3.11","3.12","3.13"]
         os: ["ubuntu-latest"]
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
@@ -42,12 +33,21 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -r requirements.txt
+
     - name: Test Performance with unittest
+      id: testperf
       run: |
         cp ./Test/testresults_template.csv ./Test/testresults.csv
         python -m build
         pip install --find-links=./dist cloudcrypt
-        python -m unittest discover -s Test -p performance_test_*.py
+        echo "output_${python-version}=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
+  PublishResults:
+    runs-on: ubuntu-latest
+    needs: [RunPerformaceCheck_Linux]
+    steps:
+    - uses: actions/checkout@v4
+    - name: Write results into files
+      run: echo needs.RunPerformaceCheck_Linux.outputs
     - uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: Added Performance Test results

@@ -13,8 +13,8 @@ from cloudcrypt.subroutines.loader import Loader
 TESTTYPE = "Encryption"
 CONFIGPATH = "Test/testconfig.csv"
 RESULTSPATH = "Test/testresults.csv"
-FILEAMOUNT = 1000
-FILESIZE = 100000
+FILEAMOUNT = 10
+FILESIZE = 100
 OS = platform.system()
 VERSION = platform.python_version()
 
@@ -37,9 +37,9 @@ class MyTestCase(unittest.TestCase):
         end = timer()
         result = (f"{TESTTYPE},{OS},{VERSION},{FILEAMOUNT},{FILESIZE},{str((end - start) / (FILEAMOUNT*FILESIZE))},"
                   f"{str((end - start)/FILEAMOUNT)},{str(end - start)}")
-        with open(RESULTSPATH, 'a') as f:
-            f.write(result)
-
+        #with open(RESULTSPATH, 'a') as f:
+        #    f.write(result)
+        print(result)
 
 if __name__ == '__main__':
     unittest.main()
