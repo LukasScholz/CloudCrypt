@@ -41,7 +41,6 @@ jobs:
         python -m build
         pip install --find-links=./dist cloudcrypt
         x=${{ matrix.python-version }}
-        echo "${x:2:2}"
         echo "output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   PublishResults:
     runs-on: ubuntu-latest
@@ -49,7 +48,10 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Write results into files
-      run: echo ${{ toJSON(needs.RunPerformaceCheck_Linux.outputs) }}
+      run: |
+        results="${{ toJSON(needs.RunPerformaceCheck_Linux.outputs) }}"
+        echo $results
+
     - uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: Added Performance Test results
