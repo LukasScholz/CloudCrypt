@@ -14,7 +14,7 @@ TESTTYPE = "Encryption"
 CONFIGPATH = "Test/testconfig.csv"
 RESULTSPATH = "Test/testresults.csv"
 FILEAMOUNT = 1000
-FILESIZE = 100000
+FILESIZE = 1000000
 OS = platform.system()
 VERSION = platform.python_version()
 
