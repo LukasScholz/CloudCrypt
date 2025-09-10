@@ -14,9 +14,7 @@ jobs:
   RunPerformaceCheck_Linux:
     runs-on: ${{ matrix.os }}
     outputs:
-      output_11: ${{ steps.testperf.outputs.output_11 }}
-      output_12: ${{ steps.testperf.outputs.output_12 }}
-      output_13: ${{ steps.testperf.outputs.output_13 }}
+      results: ${{ steps.testperf.outputs.results }}
     strategy:
       matrix:
         python-version: ["3.11","3.12","3.13"]
@@ -40,7 +38,7 @@ jobs:
         cp ./Test/testresults_template.csv ./Test/testresults.csv
         python -m build
         pip install --find-links=./dist cloudcrypt
-        echo "output_${python-version:2:2}=$(python -m unittest discover -s Test -p performance_test_*.py)" >> "$GITHUB_OUTPUT"
+        echo "results=$(python -m unittest discover -s Test -p performance_test_*.py)" >> "$GITHUB_OUTPUT"
   PublishResults:
     runs-on: ubuntu-latest
     needs: [RunPerformaceCheck_Linux]
