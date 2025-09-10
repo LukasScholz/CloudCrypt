@@ -37,7 +37,6 @@ jobs:
     - name: Test Performance with unittest
       id: testperf
       run: |
-        cp ./Test/testresults_template.csv ./Test/testresults.csv
         python -m build
         pip install --find-links=./dist cloudcrypt
         x=${{ matrix.python-version }}
@@ -49,6 +48,7 @@ jobs:
     - uses: actions/checkout@v4
     - name: Write results into files
       run: |
+        cp ./Test/testresults_template.csv ./Test/testresults.csv
         results="${{ toJSON(needs.RunPerformaceCheck_Linux.outputs) }}"
         echo $results
         echo $results | grep -Po "(?<=: ).*?((?=, )|(?= }))" >> ./Test/testresults.csv
