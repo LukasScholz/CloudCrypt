@@ -37,7 +37,7 @@ class MyTestCase(unittest.TestCase):
 
         loader = Loader(CONFIGPATH)
         encrypted = encrypt_filename(loader.cryptor, TEST_FILENAME)
-        result = decrypt_filename(loader.cryptor, encrypted+".cyacrypt")
+        result = decrypt_filename(loader.cryptor, encrypted+".cloudcrypt")
         self.assertEqual(result, TEST_FILENAME)
 
 

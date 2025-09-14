@@ -11,7 +11,7 @@ TEST_BYTESTRING = b"DASISTEINTEST"
 class MyTestCase(unittest.TestCase):
     def test_encrypt_string(self):
         config = Config(CONFIGPATH)
-        cryptor = Encryption(config.KeyFile)
+        cryptor = Encryption(config)
         encrypted = cryptor.encrypt_string(TEST_BYTESTRING)
 
         self.assertNotEqual(TEST_BYTESTRING, encrypted)
@@ -23,9 +23,9 @@ class MyTestCase(unittest.TestCase):
             self.skipTest("Encryption Failed! Cannot Test Decryption without Encryption")
 
         config = Config(CONFIGPATH)
-        cryptor = Encryption(config.KeyFile)
+        cryptor = Encryption(config)
         encrypted = cryptor.encrypt_string(TEST_BYTESTRING)
-        result = cryptor.decrypt_string(encrypted + b".cyacrypt")
+        result = cryptor.decrypt_string(encrypted + b".cloudcrypt")
         self.assertEqual(result, TEST_BYTESTRING)
 
 

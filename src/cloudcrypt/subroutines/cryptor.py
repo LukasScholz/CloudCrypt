@@ -1,12 +1,13 @@
 from cryptography.fernet import Fernet, MultiFernet
 import os.path
-
+from cloudcrypt.subroutines.ConfigManager import Config
 
 class Encryption:
 
-    def __init__(self, keyfile):
-        self.keyring = keyfile
-        self._init_key(keyfile)
+    def __init__(self, config: Config):
+        self.keyring = config.KeyFile
+        self.cryptname = config.CryptName
+        self._init_key(self.keyring)
 
     def _init_key(self, keyfile):
         if os.path.exists(keyfile):
@@ -45,7 +46,7 @@ class Encryption:
         with open(file, 'rb') as data:
             original = data.read()
         encrypted = fernet.encrypt(original)
-        with open(destination+".cyacrypt", 'wb') as data:
+        with open(destination+self.cryptname, 'wb') as data:
             data.write(encrypted)
 
     def decrypt(self, file, destination):
@@ -62,4 +63,4 @@ class Encryption:
 
     def decrypt_string(self, string):
         fernet = self._get_keys()
-        return fernet.decrypt(string[0:-9])
+        return fernet.decrypt(string[0:-len(self.cryptname)])

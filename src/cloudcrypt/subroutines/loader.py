@@ -7,7 +7,7 @@ class Loader:
 
     def __init__(self, configpath):
         self.config = Config(configpath)
-        self.cryptor = Encryption(self.config.KeyFile)
+        self.cryptor = Encryption(self.config)
 
     def create_storage(self):
         cloud = Path(self.config.CloudStorage)
