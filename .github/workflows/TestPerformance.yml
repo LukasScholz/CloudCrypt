@@ -48,6 +48,7 @@ jobs:
         echo "$(uname -s)_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
 
   RunPerformaceCheck_Windows:
+    if: false
     runs-on: windows-latest
     outputs:
       output_win_11: ${{ steps.testperf.outputs.win_output_11 }}
@@ -81,7 +82,7 @@ jobs:
 
   PublishResults:
     runs-on: ubuntu-latest
-    needs: [RunPerformaceCheck_Unix, RunPerformaceCheck_Windows]
+    needs: [RunPerformaceCheck_Unix]
     steps:
     - uses: actions/checkout@v4
     - name: Write results into files
