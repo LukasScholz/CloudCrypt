@@ -48,13 +48,13 @@ jobs:
         echo "$(uname -s)_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   PublishResults:
     runs-on: ubuntu-latest
-    needs: [RunPerformaceCheck_Linux]
+    needs: [RunPerformaceCheck_Unix]
     steps:
     - uses: actions/checkout@v4
     - name: Write results into files
       run: |
         cp ./Test/testresults_template.csv ./Test/testresults.csv
-        results="${{ toJSON(needs.RunPerformaceCheck_Linux.outputs) }}"
+        results="${{ toJSON(needs.RunPerformaceCheck_Unix.outputs) }}"
         echo $results
         echo $results | grep -Po "(?<=: ).*?((?=, )|(?= }))" >> ./Test/testresults.csv
 
