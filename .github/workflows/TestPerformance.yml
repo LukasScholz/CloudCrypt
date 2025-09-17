@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  RunPerformaceCheck_Linux:
+  RunPerformaceCheck_Unix:
     runs-on: ${{ matrix.os }}
     outputs:
       output_linux_11: ${{ steps.testperf.outputs.Linux_output_11 }}
