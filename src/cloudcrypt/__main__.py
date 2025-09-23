@@ -32,16 +32,18 @@ class CustomArgumentParser(argparse.ArgumentParser):
     def error(self, message):
         print(f'Error: {message}\n\n\n')
         self.print_help()
-        sys.exit(2)
+        sys.exit(1)
 
 
 def argparse():
     parser = CustomArgumentParser(description="Encrypted Backup-creator, mainly for Cloud usage")
 
     # required arguments
-    parser.add_argument("--source", "-s", help="Path of local directory")
-    parser.add_argument("--target", "-t", help="Path of mounted cloud directory")
-    parser.add_argument("--config", "-c", help="Get config file path") # Todo add modifiable steam
+    parser.add_argument("--initkey", "-k", help="Generate a new key File")
+    parser.add_argument("--loadkeys", "-l", help="Load keys from existing Keyfile")
+    parser.add_argument("----verifysetup", help="Verify Setup of Config File")
+
+    parser.add_argument("--config", "-c", help="Get config file path") # Todo add modifiable stream
 
     # optional arguments
     parser.add_argument("--version", "-v", action="store_true", help="prints version info and exit")
