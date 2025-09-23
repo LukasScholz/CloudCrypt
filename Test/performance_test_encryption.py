@@ -34,7 +34,6 @@ class MyTestCase(unittest.TestCase):
             loader = Loader(CONFIGPATH)
             for i in range(FILEAMOUNT):
                 generate_big_random_file(config.LocalStorage + "/tempfile_"+str(i), FILESIZE)
-
             start = timer()
             loader.create_storage()
             end = timer()
