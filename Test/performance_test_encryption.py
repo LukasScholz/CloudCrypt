@@ -38,7 +38,7 @@ class MyTestCase(unittest.TestCase):
             loader.create_storage()
             end = timer()
             testtime_sum += (end - start)
-        testtime = testtime_sum / REPEATS
+        testtime = REPEATS / testtime_sum
         result = (f"{TESTTYPE},{OS},{VERSION},{FILEAMOUNT},{FILESIZE},{str(testtime / (FILEAMOUNT*FILESIZE))},"
                   f"{str(testtime/FILEAMOUNT)},{str(testtime)} GB/s")
         print(result)
