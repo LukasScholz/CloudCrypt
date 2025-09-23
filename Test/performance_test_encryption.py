@@ -13,8 +13,9 @@ from cloudcrypt.subroutines.loader import Loader
 TESTTYPE = "Encryption"
 CONFIGPATH = "Test/testconfig.csv"
 RESULTSPATH = "Test/testresults.csv"
-FILEAMOUNT = 1000
-FILESIZE = 1000000
+REPEATS = 100
+FILEAMOUNT = 1000   # 1KB per File
+FILESIZE = 1000000 # 1GB in total
 OS = platform.system()
 VERSION = platform.python_version()
 
@@ -27,18 +28,20 @@ def generate_big_random_file(filename, size):
 
 class MyTestCase(unittest.TestCase):
     def test_storage_performance(self):
-        config = Config(CONFIGPATH)
-        loader = Loader(CONFIGPATH)
-        for i in range(FILEAMOUNT):
-            generate_big_random_file(config.LocalStorage + "/tempfile_"+str(i), FILESIZE)
+        testtime_sum = 0
+        for _ in range(REPEATS):
+            config = Config(CONFIGPATH)
+            loader = Loader(CONFIGPATH)
+            for i in range(FILEAMOUNT):
+                generate_big_random_file(config.LocalStorage + "/tempfile_"+str(i), FILESIZE)
 
-        start = timer()
-        loader.create_storage()
-        end = timer()
-        result = (f"{TESTTYPE},{OS},{VERSION},{FILEAMOUNT},{FILESIZE},{str((end - start) / (FILEAMOUNT*FILESIZE))},"
-                  f"{str((end - start)/FILEAMOUNT)},{str(end - start)}")
-        #with open(RESULTSPATH, 'a') as f:
-        #    f.write(result)
+            start = timer()
+            loader.create_storage()
+            end = timer()
+            testtime_sum += (end - start)
+        testtime = testtime_sum / REPEATS
+        result = (f"{TESTTYPE},{OS},{VERSION},{FILEAMOUNT},{FILESIZE},{str(testtime / (FILEAMOUNT*FILESIZE))},"
+                  f"{str(testtime/FILEAMOUNT)},{str(testtime)} GB/s")
         print(result)
 
 if __name__ == '__main__':
