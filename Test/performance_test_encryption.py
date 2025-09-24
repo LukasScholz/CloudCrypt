@@ -1,3 +1,4 @@
+import os
 import random
 import string
 import unittest
@@ -38,6 +39,8 @@ class MyTestCase(unittest.TestCase):
             loader.create_storage()
             end = timer()
             testtime_sum += (end - start)
+            for i in range(FILEAMOUNT):
+                os.remove(config.LocalStorage + "/tempfile_" + str(i))
         testtime = REPEATS / testtime_sum
         result = (f"{TESTTYPE},{OS},{VERSION},{FILEAMOUNT},{FILESIZE},{str(testtime / (FILEAMOUNT*FILESIZE))},"
                   f"{str(testtime/FILEAMOUNT)},{str(testtime)} GB/s")
