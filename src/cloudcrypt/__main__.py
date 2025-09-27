@@ -43,7 +43,7 @@ def argparse():
     parser.add_argument("--loadkeys", "-l", help="Load keys from existing Keyfile")
     parser.add_argument("----verifysetup", help="Verify Setup of Config File")
 
-    parser.add_argument("--config", "-c", help="Get config file path") # Todo add modifiable stream
+    parser.add_argument("--config", "-c", action="store_true", help="Get config file path")
 
     # optional arguments
     parser.add_argument("--version", "-v", action="store_true", help="prints version info and exit")

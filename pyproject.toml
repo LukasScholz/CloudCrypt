@@ -14,6 +14,9 @@ classifiers = [
 license = "GPL-3.0-only"
 license-files = ["LICEN[CS]E*"]
 
+[build-system]
+requires = ["setuptools-scm"]
+
 [project.urls]
 Homepage = "https://github.com/LukasScholz/CloudCrypt"
 Issues = "https://github.com/LukasScholz/CloudCrypt/issues"
