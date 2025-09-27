@@ -23,7 +23,7 @@ class MainInterface:
         exit(0)
 
     def display_configpath(self):
-        print(pathlib.Path(__file__).parent.resolve() / "config.csv")
+        print(pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv")
         exit(0)
 
 
