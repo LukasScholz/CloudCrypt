@@ -1,0 +1,9 @@
+[Unit]
+Description=Simple Cloud Encryption Service
+
+[Service]
+Type=exec
+ExecStart=$ScriptPath
+
+[Install]
+WantedBy=multi-user.target
