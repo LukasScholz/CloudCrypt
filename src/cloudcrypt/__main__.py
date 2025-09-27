@@ -17,14 +17,13 @@ class MainInterface:
             self.display_version()
         if self.arguments.config:
             self.display_configpath()
-        self.config = ConfigManager.Config(self.arguments.config)
 
     def display_version(self):
         print("CloudCrypt version " + __version__)
         exit(0)
 
     def display_configpath(self):
-        print(pathlib.Path(__file__).parent.resolve())
+        print(pathlib.Path(__file__).parent.resolve() / "config.csv")
         exit(0)
 
 

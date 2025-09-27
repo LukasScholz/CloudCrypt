@@ -1,3 +1,4 @@
+pip uninstall cloudcrypt -y
 cd ..
 rm -r ./dist
 python -m build
