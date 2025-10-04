@@ -78,19 +78,21 @@ jobs:
         $x=${{ matrix.python-version }}.ToString().Substring(2)
         
         echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py)
-        echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
+        echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py) >> $ENV:GITHUB_OUTPUT
   
 
   PublishResults:
     runs-on: ubuntu-latest
     needs: [RunPerformaceCheck_Unix, RunPerformaceCheck_Windows]
+    env:
+      win_outputs: '${{needs.RunPerformaceCheck_Windows.outputs}}'
     steps:
     - uses: actions/checkout@v4
     - name: Write results into files
       run: |
         cp ./Test/testresults_template.csv ./Test/testresults.csv
         results="${{ toJSON(needs.RunPerformaceCheck_Unix.outputs) }}"
-        results_win="${{ toJSON(needs.RunPerformaceCheck_Windows.outputs) }}"
+        results_win="${{ toJSON(env.win_outputs) }}"
         
         echo $results
         echo $results_win
