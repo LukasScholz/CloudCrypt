@@ -77,8 +77,8 @@ jobs:
       run: |
         python -m build
         pip install --find-links=./dist cloudcrypt
-        setx x ${{ matrix.python-version }}
-        echo $x
+        set x=${{ matrix.python-version }}
+        echo %x%
         echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py)
         REM echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   
