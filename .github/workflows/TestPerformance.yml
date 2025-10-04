@@ -65,12 +65,14 @@ jobs:
         python-version: ${{ matrix.python-version }}
 
     - name: Install dependencies
+      shell: cmd
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
         pip install -r requirements.txt
 
     - name: Test Performance with unittest
+      shell: cmd
       id: testperf
       run: |
         python -m build
