@@ -93,7 +93,7 @@ jobs:
         # results_win="${{ toJSON(needs.RunPerformaceCheck_Windows.outputs) }}"
         
         echo $results
-        # echo $results_win
+        echo $results_win
         echo $results | grep -Po "(?<=: ).*?((?=, )|(?= }))" >> ./Test/testresults.csv
         # echo $results_win | grep -Po "(?<=: ).*?((?=, )|(?= }))" >> ./Test/testresults.csv
 
