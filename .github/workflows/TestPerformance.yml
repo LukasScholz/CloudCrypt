@@ -50,9 +50,9 @@ jobs:
   RunPerformaceCheck_Windows:
     runs-on: windows-latest
     outputs:
-      output_win_11: ${{ steps.testperf.outputs."win_output_3.11" }}
-      output_win_12: ${{ steps.testperf.outputs."win_output_3.12" }}
-      output_win_13: ${{ steps.testperf.outputs."win_output_3.13" }}
+      output_win_11: ${{ steps.testperf.outputs.win_output_11 }}
+      output_win_12: ${{ steps.testperf.outputs.win_output_12 }}
+      output_win_13: ${{ steps.testperf.outputs.win_output_13 }}
 
     strategy:
       matrix:
@@ -75,7 +75,8 @@ jobs:
       run: |
         python -m build
         pip install --find-links=./dist cloudcrypt
-        $x=${{ matrix.python-version }}
+        $x=${{ matrix.python-version }}.Substring(2)
+        
         echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py)
         echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   
