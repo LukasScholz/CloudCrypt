@@ -78,7 +78,7 @@ jobs:
         $x=${{ matrix.python-version }}
         echo $x
         echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py)
-        # echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
+        echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   
 
   PublishResults:
