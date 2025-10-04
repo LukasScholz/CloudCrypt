@@ -80,7 +80,7 @@ jobs:
         setx x ${{ matrix.python-version }}
         echo $x
         echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py)
-        # echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
+        REM echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   
 
   PublishResults:
