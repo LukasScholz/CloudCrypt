@@ -90,7 +90,7 @@ jobs:
       run: |
         cp ./Test/testresults_template.csv ./Test/testresults.csv
         results="${{ toJSON(needs.RunPerformaceCheck_Unix.outputs) }}"
-        # results_win="${{ toJSON(needs.RunPerformaceCheck_Windows.outputs) }}"
+        results_win="${{ toJSON(needs.RunPerformaceCheck_Windows.outputs) }}"
         
         echo $results
         echo $results_win
