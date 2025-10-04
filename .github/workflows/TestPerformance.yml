@@ -78,6 +78,7 @@ jobs:
         $x=${{ matrix.python-version }}.ToString().Substring(2)
         
         echo "win_output_$x"=$(python -m unittest discover -s Test -p performance_test_*.py)
+        "win_output_12=1234" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
         "win_output_$x=$(python -m unittest discover -s Test -p performance_test_*.py)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
   
 
