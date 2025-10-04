@@ -48,7 +48,6 @@ jobs:
         echo "$(uname -s)_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
 
   RunPerformaceCheck_Windows:
-    if: false
     runs-on: windows-latest
     outputs:
       output_win_11: ${{ steps.testperf.outputs.win_output_11 }}
@@ -77,7 +76,8 @@ jobs:
         python -m build
         pip install --find-links=./dist cloudcrypt
         setx x ${{ matrix.python-version }}
-        echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
+        echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py)
+        # echo "win_output_${x:2:2}"=$(python -m unittest discover -s Test -p performance_test_*.py) >> "$GITHUB_OUTPUT"
   
 
   PublishResults:
