@@ -8,5 +8,5 @@ pytz
 six
 tzdata
 build
-twine
+twine==6.0.1
 setuptools
