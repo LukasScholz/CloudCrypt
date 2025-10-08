@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      id-token: write
     steps:
     - uses: actions/checkout@v4
     - name: Install dependencies
@@ -24,5 +25,5 @@ jobs:
         files: "dist/*"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Upload Release to PyPI
-      run: python3 -m twine upload --repository testpypi dist/* --verbose
+    - name: Publish package distributions to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
