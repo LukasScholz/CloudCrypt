@@ -2,8 +2,9 @@
 Description=Simple Cloud Encryption Service
 
 [Service]
-Type=exec
 ExecStart=$ScriptPath
+Environment=PYTHONUNBUFFERED=1
+Type=notify
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
