@@ -1,6 +1,8 @@
 import os
-import re
-from Exceptions import InvalidArgumentException
+import pathlib
+import shutil
+
+from cloudcrypt.subroutines.Exceptions import InvalidArgumentException
 
 
 class WindowsScheduler:
@@ -30,28 +32,23 @@ class WindowsScheduler:
         os.system(f'SchTasks /DELETE /TN {name}')
 
 class LinuxScheduler:
-    ## uses crontab for scheduling
-
-    # Cron line specifics
-    #   * * * * * "command to be executed"
-    #   - - - - -
-    #   | | | | |
-    #   | | | | ----- Day of week (0 - 7) (Sunday=0 or 7)
-    #   | | | ------- Month (1 - 12)
-    #   | | --------- Day of month (1 - 31)
-    #   | ----------- Hour (0 - 23)
-    #   ------------- Minute (0 - 59)
+    # uses systemctl for scheduling
+    # backup every time the system is restarted
 
     def __init__(self):
-        pass
+        XDG_RUNTIME_DIR = os.environ["XDG_RUNTIME_DIR"]
+        self.systemd_unit_search_path = XDG_RUNTIME_DIR + "/systemd/transient/cloudcrypt.service"
+        self.servicepath = pathlib.Path(__file__).parent.parent.resolve() / "etc" / "cloudcrypt.service"
 
-    def create_crontab(self, path):
-        if not os.path.exists(path):
-            raise InvalidArgumentException("Path not Found!")
-        croncmd = path # Todo add output routing?
-        cronline = f"0 0 * * 0  {croncmd}" # Todo: add alternatives from only sunday midnight
-        os.system(f'( crontab -l | grep -v -F {croncmd} ; echo {cronline} ) | crontab -')
+    def create_task(self):
+        self.servicepath.write_text(self.servicepath.read_text().replace("$ScriptPath",
+            str(pathlib.Path(__file__).parent.resolve() / "Scheduled.py")))
+        shutil.copyfile(self.servicepath, self.systemd_unit_search_path)
+        print("Please run the following commands to start and enable the task:")
+        print("$ systemctl --user start cloudcrypt")
+        print("$ systemctl --user enable cloudcrypt")
 
-    def remove_crontab(self, path):
-        croncmd = path # Todo add output routing?
-        os.system(f'(crontab - l | grep - v - F {croncmd}) | crontab -')
+
+    def remove_task(self):
+        os.remove(self.systemd_unit_search_path)
+        print("The following service has been removed: "+self.systemd_unit_search_path)

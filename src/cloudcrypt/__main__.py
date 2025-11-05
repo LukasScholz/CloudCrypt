@@ -6,6 +6,7 @@ import pathlib
 from cloudcrypt import __version__
 from cloudcrypt.subroutines import ConfigManager
 from cloudcrypt.subroutines import cryptor
+from cloudcrypt.subroutines import TaskScheduler
 
 class MainInterface:
 
@@ -27,6 +28,10 @@ class MainInterface:
             self.addkey()
         if self.arguments.loadkeys is not None:
             self.loadkeys(self.arguments.loadkeys)
+        if self.arguments.schedule:
+            self.add_scheduler()
+        if self.arguments.removeschedule:
+            self.remove_scheduler()
 
     def display_version(self):
         print("CloudCrypt version " + __version__)
@@ -44,6 +49,14 @@ class MainInterface:
         keyfile = self.config.KeyFile
         shutil.copyfile(newkeys, keyfile)
 
+    def add_scheduler(self):
+        scheduler = TaskScheduler.LinuxScheduler()
+        scheduler.create_task()
+
+    def remove_scheduler(self):
+        scheduler = TaskScheduler.LinuxScheduler()
+        scheduler.remove_task()
+
 
 class CustomArgumentParser(argparse.ArgumentParser):
     def error(self, message):
@@ -59,6 +72,8 @@ def argparse():
     parser.add_argument("--addkey", "-a", action="store_true", help="Generate a new key File")
     parser.add_argument("----verifysetup", action="store_true", help="Verify Setup of Config File")
     parser.add_argument("--config", "-c", action="store_true", help="Get config file path")
+    parser.add_argument("--schedule", "-s", action="store_true", help="schedule a recurring task")
+    parser.add_argument("--removeschedule", "-r", action="store_true", help="remove the scheduled task")
 
     # arguments with value
     parser.add_argument("--loadkeys", "-l", help="Load keys from existing Keyfile")
