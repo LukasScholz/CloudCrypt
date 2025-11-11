@@ -1,4 +1,5 @@
 import argparse
+import os.path
 import shutil
 import sys
 import pathlib
@@ -7,6 +8,7 @@ from cloudcrypt import __version__
 from cloudcrypt.subroutines import ConfigManager
 from cloudcrypt.subroutines import cryptor
 from cloudcrypt.subroutines import TaskScheduler
+
 
 class MainInterface:
 
@@ -17,11 +19,14 @@ class MainInterface:
     '''
     Main Program Execution
     '''
+
     def run(self):
         if self.arguments.version:
             self.display_version()
         if self.arguments.config:
             self.display_configpath()
+        if self.arguments.verifysetup:
+            self.verify_setup()
         configpath = pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv"
         self.config = ConfigManager.Config(configpath)
         if self.arguments.addkey:
@@ -50,12 +55,47 @@ class MainInterface:
         shutil.copyfile(newkeys, keyfile)
 
     def add_scheduler(self):
-        scheduler = TaskScheduler.LinuxScheduler()
+        scheduler = TaskScheduler.LinuxScheduler()  # Todo add check for Windows
         scheduler.create_task()
 
     def remove_scheduler(self):
-        scheduler = TaskScheduler.LinuxScheduler()
+        scheduler = TaskScheduler.LinuxScheduler()  # Todo add check for Windows
         scheduler.remove_task()
+
+    def verify_setup(self):
+        # Checks for valid setup
+        # See if config exists
+        configpath = pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv"
+        result = configpath.exists()
+        print(f"Config exists: {result}")
+        if not result:
+            exit(1)
+        # See if keys are added
+        config = ConfigManager.Config(configpath)
+        keyfile = config.KeyFile
+        result = pathlib.Path(keyfile).exists()
+        print(f"Keyfile exists: {result}")
+        if not result:
+            exit(1)
+        result = os.path.getsize(keyfile) != 0
+        print(f"Keys are added: {result}")
+        if not result:
+            exit(1)
+        # See if scheduler is added and active
+        scheduler = TaskScheduler.LinuxScheduler()  # Todo add check for Windows
+        result = scheduler.check_task()
+        print(f"Scheduler is added: {result}")
+        if not result:
+            exit(1)
+        result = scheduler.check_enabled()
+        print(f"Scheduler is enabled: {result}")
+        if not result:
+            exit(1)
+        result = scheduler.check_active()
+        print(f"Scheduler is running: {result}")
+        if not result:
+            exit(1)
+        exit(0)
 
 
 class CustomArgumentParser(argparse.ArgumentParser):
@@ -70,7 +110,7 @@ def argparse():
 
     # arguments without value
     parser.add_argument("--addkey", "-a", action="store_true", help="Generate a new key File")
-    parser.add_argument("----verifysetup", action="store_true", help="Verify Setup of Config File")
+    parser.add_argument("--verifysetup", action="store_true", help="Verify Setup of Config File")
     parser.add_argument("--config", "-c", action="store_true", help="Get config file path")
     parser.add_argument("--schedule", "-s", action="store_true", help="schedule a recurring task")
     parser.add_argument("--removeschedule", "-r", action="store_true", help="remove the scheduled task")
