@@ -46,7 +46,7 @@ Edit the Path to match your existing Filepath for your Key File
 Run the following Code add a scheduled serivce
 ######
     python -m cloudcrypt -s
-Imprtant: You have to manually start/enable the service after adding!
+**Important:** You have to manually start/enable the service after adding!
 
 
 ### Verify Setup Completion
