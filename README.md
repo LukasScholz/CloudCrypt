@@ -7,6 +7,9 @@ Basic Cloud Storage solution with AES encryption using Fernet
 - Storage Device as a mounted directory
 
 A Comprehensive Guide on how to mount remote storage devices can be found [here](https://linuxvox.com/blog/mount-remote-folder-linux/)
+
+### Additional Linux Requirements
+- (Only for task scheduling) Package: [systemd](https://systemd.io/) (>=v250)
   
 ## Installation
 This package is currently in prerelease phase. Therefore it is only available at the Test-PyPI Package Index
