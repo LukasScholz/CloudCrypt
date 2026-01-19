@@ -1,7 +1,6 @@
 from cryptography.fernet import Fernet, MultiFernet
 import os.path
 from cloudcrypt.subroutines.ConfigManager import Config
-
 class Encryption:
 
     def __init__(self, config: Config):
@@ -26,12 +25,18 @@ class Encryption:
 
     def add_key(self):
         new_key = Fernet.generate_key()
+        self._append_key(new_key)
+
+    def _append_key(self, new_key: bytes):
         with open(self.keyring, 'ab') as f:
             f.write(new_key)
             f.write(str.encode("\n"))
 
     def add_key_to_front(self):
         new_key = Fernet.generate_key() + str.encode("\n")
+        self._append_key_to_front(new_key)
+
+    def _append_key_to_front(self, new_key: bytes):
         with open(self.keyring, 'rb') as file:
             lines = file.readlines()
         keys = [new_key]
