@@ -17,13 +17,15 @@ jobs:
       output_linux_11: ${{ steps.testperf.outputs.Linux_output_11 }}
       output_linux_12: ${{ steps.testperf.outputs.Linux_output_12 }}
       output_linux_13: ${{ steps.testperf.outputs.Linux_output_13 }}
+      output_linux_14: ${{ steps.testperf.outputs.Linux_output_14 }}
       output_macos_11: ${{ steps.testperf.outputs.Darwin_output_11 }}
       output_macos_12: ${{ steps.testperf.outputs.Darwin_output_12 }}
       output_macos_13: ${{ steps.testperf.outputs.Darwin_output_13 }}
+      output_macos_14: ${{ steps.testperf.outputs.Darwin_output_14 }}
 
     strategy:
       matrix:
-        python-version: ["3.11","3.12","3.13"]
+        python-version: ["3.11","3.12","3.13", "3.14"]
         os: ["ubuntu-latest", "macos-latest"]
     steps:
     - uses: actions/checkout@v4
@@ -53,10 +55,11 @@ jobs:
       output_win_11: ${{ steps.testperf.outputs.win_output_11 }}
       output_win_12: ${{ steps.testperf.outputs.win_output_12 }}
       output_win_13: ${{ steps.testperf.outputs.win_output_13 }}
+      output_win_14: ${{ steps.testperf.outputs.win_output_14 }}
 
     strategy:
       matrix:
-        python-version: ["3.11","3.12","3.13"]
+        python-version: ["3.11","3.12","3.13", "3.14"]
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
