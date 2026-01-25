@@ -12,15 +12,12 @@ def get_configpath():
 class Scheduled:
 
     def __init__(self):
-        self.loader = None
-        self.config = None
-        self.backup_creator = None
-
-    def main(self):
         configpath = get_configpath()
         self.loader = loader.Loader(configpath)
         self.config = ConfigManager.Config(configpath)
         self.backup_creator = BackupCreator(configpath)
+
+    def main(self):
         # Mirror Storage
         if self.config.MirrorStorage:
             self.loader.create_storage()
