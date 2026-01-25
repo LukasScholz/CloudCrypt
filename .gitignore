@@ -206,7 +206,3 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
-
-# Test result files
-Test/testresults.csv
-Test/testresults_template.csv
