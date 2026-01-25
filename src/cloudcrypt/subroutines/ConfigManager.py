@@ -10,4 +10,8 @@ class Config:
             self._data[config] = df.iloc[i]["ConfigValue"]
 
     def __getattr__(self, key):
+        if self._data[key] == "False":
+            return False
+        elif self._data[key] == "True":
+            return True
         return self._data[key]

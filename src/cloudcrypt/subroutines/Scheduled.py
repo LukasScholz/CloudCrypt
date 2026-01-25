@@ -2,7 +2,8 @@
 import pathlib
 
 from cloudcrypt.subroutines import loader
-
+from cloudcrypt.subroutines import ConfigManager
+from cloudcrypt.subroutines.Backup_Creator import BackupCreator
 
 def get_configpath():
     return pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv"
@@ -12,11 +13,22 @@ class Scheduled:
 
     def __init__(self):
         self.loader = None
+        self.config = None
+        self.backup_creator = None
 
     def main(self):
         configpath = get_configpath()
         self.loader = loader.Loader(configpath)
-        self.loader.create_storage()
+        self.config = ConfigManager.Config(configpath)
+        self.backup_creator = BackupCreator(configpath)
+        # Mirror Storage
+        if self.config.MirrorStorage:
+            self.loader.create_storage()
+        # Create Backups
+        if self.config.CreateBackups:
+            self.backup_creator.create_local_backup_cloud()
+
+
 
 
 if __name__ == "__main__":

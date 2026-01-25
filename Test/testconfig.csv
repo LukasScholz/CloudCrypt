@@ -3,3 +3,5 @@ CloudStorage, Test/TestCloud
 LocalStorage, Test/Local
 KeyFile, Test/testkeys.keys
 CryptName,.cloudcrypt
+CreateBackups,True
+MirrorStorage,True
