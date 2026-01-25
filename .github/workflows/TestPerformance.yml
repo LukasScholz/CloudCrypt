@@ -99,8 +99,9 @@ jobs:
         echo $results_win
         echo $results | grep -Po "(?<=: ).*?((?=, )|(?= }))" | tr -d '\"' >> ./Test/testresults.csv
         echo $results_win | grep -Po "(?<=: ).*?((?=, )|(?= }))" | tr -d '\"' >> ./Test/testresults.csv
-
+    - name: Create comparison image
+      run: python ./Test/etc/create_performance_plot.py
     - uses: stefanzweifel/git-auto-commit-action@v6
       with:
         commit_message: Added Performance Test results
-        file_pattern: '*results.csv'
+        file_pattern: '*results.*'

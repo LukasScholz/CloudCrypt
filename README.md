@@ -64,4 +64,5 @@ TODO...
 
 
 ## Performance
-The current Performace levels can be seen [here](./Test/testresults.csv)
+![image_not_found](./Test/performance_results.svg)
+The full sources for the current Performace levels can be seen [here](./Test/testresults.csv)
