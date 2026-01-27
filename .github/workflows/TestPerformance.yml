@@ -99,6 +99,10 @@ jobs:
         echo $results_win
         echo $results | grep -Po "(?<=: ).*?((?=, )|(?= }))" | tr -d '\"' >> ./Test/testresults.csv
         echo $results_win | grep -Po "(?<=: ).*?((?=, )|(?= }))" | tr -d '\"' >> ./Test/testresults.csv
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt 
     - name: Create comparison image
       run: python ./Test/etc/create_performance_plot.py
     - uses: stefanzweifel/git-auto-commit-action@v6
