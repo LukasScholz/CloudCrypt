@@ -22,6 +22,7 @@ def creat_horizontal_bar_plot():
     plt.ylabel('Performance Test')
     plt.xlabel('Speed in MB/s')
     plt.title('Performance Test Comparison')
+    plt.tight_layout()
     plt.savefig("Test/performance_results.svg")
 
 
