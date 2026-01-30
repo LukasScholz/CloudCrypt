@@ -7,7 +7,7 @@ from cloudcrypt.subroutines.Backup_Creator import BackupCreator
 from cloudcrypt.subroutines.ConfigManager import Config
 
 # constants
-CONFIGPATH = "Test/testconfig.csv"
+CONFIGPATH = "Test/testconfig"
 
 
 class MyTestCase(unittest.TestCase):

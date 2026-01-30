@@ -5,7 +5,7 @@ from cloudcrypt.subroutines.ConfigManager import Config
 from cloudcrypt.subroutines.loader import Loader, encrypt_filename, decrypt_filename
 
 # constants
-CONFIGPATH = "Test/testconfig.csv"
+CONFIGPATH = "Test/testconfig"
 TEST_FILENAME = "TESTFILENAME"
 
 

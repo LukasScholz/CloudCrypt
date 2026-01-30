@@ -5,7 +5,7 @@ class Config:
 
     def __init__(self, config_file):
         self._data = {}
-        df = pd.read_csv(config_file, skipinitialspace=True)
+        df = pd.read_csv(config_file, sep='\s*=\s*')
         for i, config in enumerate(df["ConfigName"]):
             self._data[config] = df.iloc[i]["ConfigValue"]
 

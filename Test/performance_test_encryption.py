@@ -12,7 +12,7 @@ from cloudcrypt.subroutines.loader import Loader
 
 # constants
 TESTTYPE = "Encryption"
-CONFIGPATH = "Test/testconfig.csv"
+CONFIGPATH = "Test/testconfig"
 RESULTSPATH = "Test/testresults.csv"
 REPEATS = 10
 FILEAMOUNT = 1000   # 1KB per File

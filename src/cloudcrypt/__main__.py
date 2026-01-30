@@ -27,7 +27,7 @@ class MainInterface:
             self.display_configpath()
         if self.arguments.verifysetup:
             self.verify_setup()
-        configpath = pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv"
+        configpath = pathlib.Path(__file__).parent.resolve() / "etc" / "config"
         self.config = ConfigManager.Config(configpath)
         if self.arguments.addkey:
             self.addkey()
@@ -43,7 +43,7 @@ class MainInterface:
         exit(0)
 
     def display_configpath(self):
-        print(pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv")
+        print(pathlib.Path(__file__).parent.resolve() / "etc" / "config")
         exit(0)
 
     def addkey(self):
@@ -65,7 +65,7 @@ class MainInterface:
     def verify_setup(self):
         # Checks for valid setup
         # See if config exists
-        configpath = pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv"
+        configpath = pathlib.Path(__file__).parent.resolve() / "etc" / "config"
         result = configpath.exists()
         print(f"Config exists: {result}")
         if not result:

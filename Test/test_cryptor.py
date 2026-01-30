@@ -4,7 +4,7 @@ from cloudcrypt.subroutines.cryptor import Encryption
 from cloudcrypt.subroutines.ConfigManager import Config
 
 # constants
-CONFIGPATH = "Test/testconfig.csv"
+CONFIGPATH = "Test/testconfig"
 TEST_BYTESTRING = b"DASISTEINTEST"
 
 

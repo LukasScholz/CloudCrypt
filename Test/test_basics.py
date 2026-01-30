@@ -3,7 +3,7 @@ import unittest
 from cloudcrypt.subroutines.ConfigManager import Config
 
 # constants
-CONFIGPATH = "Test/testconfig.csv"
+CONFIGPATH = "Test/testconfig"
 
 
 class TestSubroutines(unittest.TestCase):

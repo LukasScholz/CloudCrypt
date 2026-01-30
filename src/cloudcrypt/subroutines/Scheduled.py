@@ -6,7 +6,7 @@ from cloudcrypt.subroutines import ConfigManager
 from cloudcrypt.subroutines.Backup_Creator import BackupCreator
 
 def get_configpath():
-    return pathlib.Path(__file__).parent.resolve() / "etc" / "config.csv"
+    return pathlib.Path(__file__).parent.resolve() / "etc" / "config"
 
 
 class Scheduled:
