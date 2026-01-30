@@ -59,7 +59,7 @@ Run the following Code to see if everything has been set up correctly
 If a step returns False, please see the according step above
 
 
-### Mirroring your Storage
+### Downloading from Cloudserver
 TODO...
 
 
