@@ -28,13 +28,16 @@ Run the following Code to edit the initial config file
 
 ### Setup remote Storage
 Create an empty directory on your remote storage. 
-Edit the config File and set the variable **CloudStorage** to the absolute Path of your empty directory.  
+Edit the config File and set the variable **CloudStorage** to the Path of your empty directory.  
 
 ### Mirror Local Directory
-Edit the config File and set the variable **LocalStorage** to the absolute Path of your local directory. 
+Edit the config File and set the variable **LocalStorage** to the Path of your local directory. 
 Which should be securely saved by your cloud storage
 
 ### Generate Key File
+Edit the config File and set the variable **KeyFile** to the desired Location of your Keyfile.  
+(This includes the Filename of the Keyfile)
+
 #### 1. Option: Generate New Key File
 For your first usage: Run the following Code to create a new Key File with a new key
 ######

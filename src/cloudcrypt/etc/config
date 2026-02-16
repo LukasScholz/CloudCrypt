@@ -1,7 +1,7 @@
 ConfigName = ConfigValue
-CloudStorage = CHANGE_THIS!! PATH_TO_Cloud_FILES
-LocalStorage = CHANGE_THIS!! PATH_TO_Local_FILES
-KeyFile =  CHANGE_THIS!! PATH_TO_KEYFILE
+CloudStorage = PATH_TO_Cloud_FILES
+LocalStorage = PATH_TO_Local_FILES
+KeyFile =  PATH_TO_KEYFILE
 CryptName = .cloudcrypt
 CreateBackups = True
 MirrorStorage = True
