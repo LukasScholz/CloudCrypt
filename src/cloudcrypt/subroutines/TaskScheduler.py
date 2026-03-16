@@ -2,7 +2,7 @@ import os
 import pathlib
 import shutil
 
-from cloudcrypt.subroutines.Exceptions import InvalidArgumentException
+from cloudcrypt.subroutines.Exceptions import WarningAndExceptions
 
 
 class WindowsScheduler:
@@ -17,7 +17,7 @@ class WindowsScheduler:
         #    raise InvalidArgumentException("Unknown Interval!")
         interval = "WEEKLY"
         if not os.path.exists(path):
-            raise InvalidArgumentException("Path not Found!")
+            raise WarningAndExceptions.CustomExceptions.InvalidArgumentException("Path not Found!")
         # if re.search(self.time_regex, time) is None:
         #   raise InvalidArgumentException("Enter valid Time!")
         time = "00:00"

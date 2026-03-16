@@ -68,7 +68,7 @@ class MainInterface:
         setupverify.verify_setup()
 
 
-class CustomArgumentParser(argparse.ArgumentParser):
+class CustomArgumentParser(argparse.ArgumentParser): # Todo: Move to Exceptions Class
     def error(self, message):
         print(f'Error: {message}\n\n\n')
         self.print_help()
