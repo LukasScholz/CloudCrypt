@@ -63,7 +63,9 @@ If a step returns False, please see the according step above
 
 
 ### Downloading from Cloudserver
-TODO...
+To load the last storage backup run
+######
+    python -m cloudcrypt -b
 
 
 ## Performance

@@ -9,6 +9,7 @@ from cloudcrypt.subroutines import ConfigManager
 from cloudcrypt.subroutines import cryptor
 from cloudcrypt.subroutines import TaskScheduler
 from cloudcrypt.subroutines import SetupVerifier
+from cloudcrypt.subroutines import loader
 
 
 class MainInterface:
@@ -38,13 +39,18 @@ class MainInterface:
             self.add_scheduler()
         if self.arguments.removeschedule:
             self.remove_scheduler()
+        if self.arguments.loadbackup():
+            self.load_backup()
+
+    def get_configpath(self):
+        return pathlib.Path(__file__).parent.resolve() / "etc" / "config"
 
     def display_version(self):
         print("CloudCrypt version " + __version__)
         exit(0)
 
     def display_configpath(self):
-        print(pathlib.Path(__file__).parent.resolve() / "etc" / "config")
+        print(self.get_configpath())
         exit(0)
 
     def addkey(self):
@@ -67,6 +73,9 @@ class MainInterface:
         setupverify = SetupVerifier.Verifier()
         setupverify.verify_setup()
 
+    def load_backup(self):
+        dataloader = loader.Loader(self.get_configpath())
+        dataloader.load_storage()
 
 class CustomArgumentParser(argparse.ArgumentParser): # Todo: Move to Exceptions Class
     def error(self, message):
@@ -90,6 +99,7 @@ def argparse():
 
     # optional arguments
     parser.add_argument("--version", "-v", action="store_true", help="prints version info and exit")
+    parser.add_argument("--loadbackup", "-b", action="store_true", help="Load backup from cloudserver")
     args = parser.parse_args()
     interface = MainInterface(args)
     interface.run()
